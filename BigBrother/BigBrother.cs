@@ -1,10 +1,10 @@
-﻿using Bot.Controllers;
+﻿using Bot.Modules;
 
 namespace Bot
 {
     internal class BigBrother
     {
-        List<IController> controllers;
+        List<IModules> modules;
 
         public BigBrother()
         {
