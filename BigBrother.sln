@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BigBrother.BLL", "BigBrother.BLL.csproj", "{6BF1BF62-1316-414D-8125-BE7B7E080C75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BigBrother.BLL", "BigBrother.BLL\BigBrother.BLL.csproj", "{6BF1BF62-1316-414D-8125-BE7B7E080C75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigBrother.DAL", "..\BigBrother.DAL\BigBrother.DAL.csproj", "{CB39F384-B34A-4998-BA31-98BE07D4D1FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigBrother.DAL", "BigBrother.DAL\BigBrother.DAL.csproj", "{CB39F384-B34A-4998-BA31-98BE07D4D1FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
