@@ -4,7 +4,7 @@ namespace Bot
 {
     internal class BigBrother
     {
-        List<IModules> modules;
+        List<IModule> modules;
 
         public BigBrother()
         {
