@@ -16,4 +16,10 @@
     <PackageReference Include="Discord.Net" Version="3.10.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+    <Folder Include="Utilities\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>
