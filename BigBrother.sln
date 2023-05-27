@@ -5,7 +5,9 @@ VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BigBrother.BLL", "BigBrother.BLL\BigBrother.BLL.csproj", "{6BF1BF62-1316-414D-8125-BE7B7E080C75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigBrother.DAL", "BigBrother.DAL\BigBrother.DAL.csproj", "{CB39F384-B34A-4998-BA31-98BE07D4D1FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BigBrother.DAL", "BigBrother.DAL\BigBrother.DAL.csproj", "{CB39F384-B34A-4998-BA31-98BE07D4D1FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InversionOfControl", "InversionOfControl\InversionOfControl.csproj", "{A13B9B74-C489-4007-9DB0-36116D4344BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{CB39F384-B34A-4998-BA31-98BE07D4D1FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB39F384-B34A-4998-BA31-98BE07D4D1FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB39F384-B34A-4998-BA31-98BE07D4D1FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A13B9B74-C489-4007-9DB0-36116D4344BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A13B9B74-C489-4007-9DB0-36116D4344BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A13B9B74-C489-4007-9DB0-36116D4344BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A13B9B74-C489-4007-9DB0-36116D4344BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

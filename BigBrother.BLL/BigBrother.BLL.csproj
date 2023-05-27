@@ -22,4 +22,9 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BigBrother.DAL\BigBrother.DAL.csproj" />
+    <ProjectReference Include="..\InversionOfControl\InversionOfControl.csproj" />
+  </ItemGroup>
+
 </Project>
