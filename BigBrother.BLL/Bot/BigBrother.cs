@@ -8,7 +8,7 @@ namespace BigBrother.BLL.Bot
 	{
 		private readonly DiscordSocketClient client;
 
-		private readonly IEnumerable<IModule> modules;
+		private readonly IReadOnlyDictionary<ulong, IModule> modules;
 
 		public BigBrother()
 		{
@@ -18,20 +18,22 @@ namespace BigBrother.BLL.Bot
 
 			client.SlashCommandExecuted += Client_SlashCommandExecuted;
 
-			modules = new List<IModule>();
+			modules = new Dictionary<ulong, IModule>();
 		}
 
-		private Task Client_SlashCommandExecuted(SocketSlashCommand arg)
+		private async Task Client_SlashCommandExecuted(SocketSlashCommand command)
 		{
-			throw new NotImplementedException();
+			if (!modules.TryGetValue(command.CommandId, out IModule? module))
+				// TODO handle unrecognized commands
+				return;
+
+			await module.HandleCommand(command);
 		}
 
 		private async void BuildSlashCommands()
 		{
-			foreach (var module in modules)
-			{
+			foreach (IModule module in modules.Values)
 				await client.CreateGlobalApplicationCommandAsync(module.GetModuleCommandBuilder().Build());
-			}
 		}
 
 		private async Task Connect()
@@ -48,8 +50,10 @@ namespace BigBrother.BLL.Bot
 			await client.LogoutAsync();
 		}
 
-		public int Run()
+		public async Task<int> Run()
 		{
+			// TODO This is temporary
+			await Task.Yield();
 			return 0;
 		}
 	}

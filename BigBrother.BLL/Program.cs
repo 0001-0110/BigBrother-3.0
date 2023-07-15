@@ -4,12 +4,12 @@ namespace BigBrother.BLL
 {
 	public static class Program
 	{
-		public static async Task<int> Main(string[] args)
+		public static async Task<int> Main()
 		{
 			// Create a new Instance of the bot
 			_BigBrother thing = new();
 			// Start the bot
-			int exitCode = thing.Run();
+			int exitCode = await thing.Run();
 			return exitCode;
 		}
 	}
