@@ -5,6 +5,6 @@ namespace PAAD.DAL.Repositories
 {
     public interface IRepositoryCollection
     {
-        public IRepository<T> GetRepository<T>() where T : IModel;
+        public IRepository<T> GetRepository<T>() where T : class, IModel;
     }
 }

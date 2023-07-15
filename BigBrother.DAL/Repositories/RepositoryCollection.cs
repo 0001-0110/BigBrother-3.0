@@ -5,7 +5,7 @@ namespace PAAD.DAL.Repositories
 {
     public class RepositoryCollection : IRepositoryCollection
     {
-        private Dictionary<Type, object> repositories;
+        private readonly Dictionary<Type, object> repositories;
 
         public RepositoryCollection()
         {
@@ -16,14 +16,12 @@ namespace PAAD.DAL.Repositories
             };
         }
 
-        public IRepository<T> GetRepository<T>() where T : IModel
+        public IRepository<T> GetRepository<T>() where T : class, IModel
         {
-            object? repository;
+			if (!repositories.TryGetValue(typeof(T), out object? repository))
+				throw new KeyNotFoundException();
 
-            if (!repositories.TryGetValue(typeof(T), out repository))
-                throw new KeyNotFoundException();
-
-            return (IRepository<T>)repository;
+			return (IRepository<T>)repository;
         }
     }
 }

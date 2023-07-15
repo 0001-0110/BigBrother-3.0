@@ -8,10 +8,10 @@ using System.Reflection;
 
 namespace PAAD.DAL.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : class, IModel
+    public abstract class Repository<T> : IRepository<T> where T : class, IModel
     {
         protected BigBrotherDbContext dbContext;
-        private PropertyInfo property;
+        private readonly PropertyInfo property;
 
         public Repository(BigBrotherDbContext dbContext)
         {

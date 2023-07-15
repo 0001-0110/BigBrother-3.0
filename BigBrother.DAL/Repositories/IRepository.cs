@@ -2,7 +2,12 @@
 
 namespace BigBrother.DAL.Repositories
 {
-    public interface IRepository<T> where T : IModel
+    public interface IRepository
+    {
+
+    }
+
+    public interface IRepository<T> : IRepository where T : class, IModel
     {
         public bool IdExists(int id);
 
