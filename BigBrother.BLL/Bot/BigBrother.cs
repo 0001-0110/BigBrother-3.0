@@ -1,45 +1,56 @@
-﻿using Bot.Modules;
+﻿using BigBrother.BLL.Bot.Modules;
 using Discord;
 using Discord.WebSocket;
 
-namespace Bot
+namespace BigBrother.BLL.Bot
 {
-    internal class BigBrother
-    {
-        private DiscordSocketClient client;
+	internal class BigBrother
+	{
+		private readonly DiscordSocketClient client;
 
-        List<IModule> modules;
+		private readonly IEnumerable<IModule> modules;
 
-        public BigBrother()
-        {
+		public BigBrother()
+		{
+			// TODO We may not need all intents
+			client = new DiscordSocketClient(
+				new DiscordSocketConfig() { GatewayIntents = GatewayIntents.All });
 
-        }
+			client.SlashCommandExecuted += Client_SlashCommandExecuted;
 
-        private async void BuildSlashCommands()
-        {
-            foreach (var module in modules)
-            {
-                await client.CreateGlobalApplicationCommandAsync(module.GetModuleCommandBuilder().Build());
-            }
-        }
+			modules = new List<IModule>();
+		}
 
-        private async Task Connect()
-        {
-            // TODO Read token
-            await client.LoginAsync(TokenType.Bot, "");
-            await client.StartAsync();
-        }
+		private Task Client_SlashCommandExecuted(SocketSlashCommand arg)
+		{
+			throw new NotImplementedException();
+		}
 
-        private async Task Disconnect()
-        {
-            await client.SetStatusAsync(UserStatus.Offline);
-            await client.StopAsync();
-            await client.LogoutAsync();
-        }
+		private async void BuildSlashCommands()
+		{
+			foreach (var module in modules)
+			{
+				await client.CreateGlobalApplicationCommandAsync(module.GetModuleCommandBuilder().Build());
+			}
+		}
 
-        public int Run()
-        {
-            return 0;
-        }
-    }
+		private async Task Connect()
+		{
+			// TODO Read token
+			await client.LoginAsync(TokenType.Bot, "");
+			await client.StartAsync();
+		}
+
+		private async Task Disconnect()
+		{
+			await client.SetStatusAsync(UserStatus.Offline);
+			await client.StopAsync();
+			await client.LogoutAsync();
+		}
+
+		public int Run()
+		{
+			return 0;
+		}
+	}
 }

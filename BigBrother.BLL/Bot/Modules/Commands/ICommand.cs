@@ -2,8 +2,8 @@
 
 namespace BigBrother.BLL.Bot.Modules.Commands
 {
-    internal interface ICommand
-    {
-        public SlashCommandOptionBuilder GetCommandBuilder();
-    }
+	internal interface ICommand
+	{
+		public SlashCommandOptionBuilder GetCommandBuilder();
+	}
 }

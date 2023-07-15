@@ -1,16 +1,16 @@
 ﻿using Discord;
 using Discord.WebSocket;
 
-namespace Bot.Modules
+namespace BigBrother.BLL.Bot.Modules
 {
-    internal interface IModule
-    {
-        public Task Init();
+	internal interface IModule
+	{
+		public Task Init();
 
-        public SlashCommandBuilder GetModuleCommandBuilder();
+		public SlashCommandBuilder GetModuleCommandBuilder();
 
-        // The method to call when this module is called
-        // TODO might not be the correct return type
-        public Task HandleCommand(SocketSlashCommand command);
-    }
+		// The method to call when this module is called
+		// TODO might not be the correct return type
+		public Task HandleCommand(SocketSlashCommand command);
+	}
 }
