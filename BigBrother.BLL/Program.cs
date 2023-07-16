@@ -1,13 +1,16 @@
-﻿using Bot;
+﻿using _BigBrother = BigBrother.BLL.Bot.BigBrother;
 
-public static class Program
+namespace BigBrother.BLL
 {
-    public static async Task<int> Main(string[] args)
-    {
-        // Create a new Instance of the bot
-        BigBrother thing = new BigBrother();
-        // Start the bot
-        int exitCode = thing.Run();
-        return exitCode;
-    }
+	public static class Program
+	{
+		public static async Task<int> Main()
+		{
+			// Create a new Instance of the bot
+			_BigBrother thing = new();
+			// Start the bot
+			int exitCode = await thing.Run();
+			return exitCode;
+		}
+	}
 }

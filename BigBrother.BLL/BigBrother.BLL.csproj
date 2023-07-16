@@ -17,6 +17,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Bot\Commands\DiceCommand\" />
+    <Folder Include="Bot\Commands\ListCommand\" />
+    <Folder Include="Bot\Commands\ChessCommand\" />
+    <Folder Include="Bot\Commands\BirthdayCommand\" />
+    <Folder Include="Bot\Commands\HangmanCommand\" />
+    <Folder Include="Bot\Commands\RoleCommand\" />
+    <Folder Include="Bot\Commands\ReminderCommand\" />
+    <Folder Include="Bot\Commands\QuoteCommand\" />
     <Folder Include="Extensions\" />
     <Folder Include="Utilities\" />
     <Folder Include="Services\" />
