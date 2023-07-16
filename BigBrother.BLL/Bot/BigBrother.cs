@@ -1,4 +1,4 @@
-﻿using BigBrother.BLL.Bot.Modules;
+﻿using BigBrother.BLL.Bot.Services;
 using Discord;
 using Discord.WebSocket;
 
@@ -7,33 +7,23 @@ namespace BigBrother.BLL.Bot
 	internal class BigBrother
 	{
 		private readonly DiscordSocketClient client;
+		private readonly CommandHandlerCollection commandHandlerCollection;
 
-		private readonly IReadOnlyDictionary<ulong, IModule> modules;
+		private bool isRunning = false;
 
 		public BigBrother()
 		{
 			// TODO We may not need all intents
 			client = new DiscordSocketClient(
 				new DiscordSocketConfig() { GatewayIntents = GatewayIntents.All });
+			commandHandlerCollection = new CommandHandlerCollection();
 
 			client.SlashCommandExecuted += Client_SlashCommandExecuted;
-
-			modules = new Dictionary<ulong, IModule>();
 		}
 
 		private async Task Client_SlashCommandExecuted(SocketSlashCommand command)
 		{
-			if (!modules.TryGetValue(command.CommandId, out IModule? module))
-				// TODO handle unrecognized commands
-				return;
-
-			await module.HandleCommand(command);
-		}
-
-		private async void BuildSlashCommands()
-		{
-			foreach (IModule module in modules.Values)
-				await client.CreateGlobalApplicationCommandAsync(module.GetModuleCommandBuilder().Build());
+			await commandHandlerCollection.ExecuteCommand(command);
 		}
 
 		private async Task Connect()
@@ -52,8 +42,22 @@ namespace BigBrother.BLL.Bot
 
 		public async Task<int> Run()
 		{
-			// TODO This is temporary
-			await Task.Yield();
+			try
+			{
+				await Connect();
+
+				while (isRunning)
+					// TODO Raw value
+					await Task.Delay(5000);
+			}
+			catch (Exception exception)
+			{
+				// TODO Log exception
+				return exception.HResult;
+			}
+
+			await Disconnect();
+
 			return 0;
 		}
 	}

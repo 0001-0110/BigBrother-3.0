@@ -1,11 +1,11 @@
 ﻿using Discord;
 
-namespace BigBrother.BLL.Bot.Modules.Commands
+namespace BigBrother.BLL.Bot.Commands.SubCommands
 {
-	internal class Command : ICommand
+	internal class SubCommandHandler : ISubCommandHandler
 	{
 		// TODO
-		public Command(params string[] args)
+		public SubCommandHandler(params string[] args)
 		{
 			throw new NotImplementedException();
 		}
