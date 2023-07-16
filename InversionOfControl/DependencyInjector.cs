@@ -4,8 +4,8 @@ namespace InversionOfControl
 {
     public class DependencyInjector : IDependencyInjector
     {
-        private Dictionary<Type, Type> mappings;
-        private Dictionary<Type, object> singletons;
+		private readonly Dictionary<Type, Type> mappings;
+		private readonly Dictionary<Type, object> singletons;
 
         public DependencyInjector()
         {
@@ -17,18 +17,16 @@ namespace InversionOfControl
 
         public DependencyInjector Map<TInterface, TImplementation>() where TImplementation : TInterface
         {
-            // TODO might already exists
             mappings.Add(typeof(TInterface), typeof(TImplementation));
             return this;
         }
 
         public DependencyInjector MapSingleton<TInterface, TImplementation>() where TImplementation : class, TInterface
         {
-            // Create the singleton instance
-            TImplementation? singleton = Instantiate(typeof(TImplementation)) as TImplementation;
-            if (singleton == null)
-                throw new Exception("This singleton instance could not be created. Check that all of its dependencies have been mapped beforehand and that there is a valid constructor.");
-            return MapSingleton<TInterface, TImplementation>(singleton);
+			// Create the singleton instance
+			if (Instantiate(typeof(TImplementation)) is not TImplementation singleton)
+				throw new Exception("This singleton instance could not be created. Check that all of its dependencies have been mapped beforehand and that there is a valid constructor.");
+			return MapSingleton<TInterface, TImplementation>(singleton);
         }
 
         // This overload allows for the instance to be created manually
@@ -109,7 +107,7 @@ namespace InversionOfControl
         private object? Instantiate(Type type, params object[] arguments)
         {
             ConstructorInfo? constructor = GetBestConstructor(type, arguments.Select(argument => argument.GetType()).ToArray());
-            if (constructor == null)
+			if (constructor == null)
                 // HOW TO FIX :
                 // 1. Check that the object you are trying to instantiate has a public constructor
                 // 2. Check that each dependency has been mapped
