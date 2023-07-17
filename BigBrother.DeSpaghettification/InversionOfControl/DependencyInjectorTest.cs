@@ -1,5 +1,4 @@
-﻿using BigBrother.DeSpaghettification.Utilities;
-using InversionOfControl;
+﻿using InversionOfControl;
 
 namespace BigBrother.DeSpaghettification.InversionOfControl
 {
@@ -27,7 +26,7 @@ namespace BigBrother.DeSpaghettification.InversionOfControl
 		[TestCase(typeof(TwoDependencyWithDependenciesClass))]
 		public void TestDependencyInjectionWithoutArguments(Type implementation)
 		{
-			object? result = ReflectionUtility.CallPrivate(injector, "Instantiate", new object?[] { implementation, Array.Empty<object>(), });
+			object? result = injector.Instantiate(implementation, Array.Empty<object>());
 			Assert.That(result, Is.Not.Null);
 			Assert.Multiple(() =>
 			{
@@ -50,7 +49,7 @@ namespace BigBrother.DeSpaghettification.InversionOfControl
 		[TestCase(typeof(OneDependencyWithDependenciesAndArgsClass), 10f)]
 		public void TestDependencyIjectionWithArgumengts(Type implementation, params object[] arguments)
 		{
-			object? result = ReflectionUtility.CallPrivate(injector, "Instantiate", new object?[] { implementation, arguments, });
+			object? result = injector.Instantiate(implementation, arguments);
 			Assert.That(result, Is.Not.Null);
 			Assert.Multiple(() =>
 			{

@@ -104,7 +104,7 @@ namespace InversionOfControl
             return bestConstructor;
         }
 
-        private object? Instantiate(Type type, params object[] arguments)
+        public object? Instantiate(Type type, params object[] arguments)
         {
             ConstructorInfo? constructor = GetBestConstructor(type, arguments.Select(argument => argument.GetType()).ToArray());
 			if (constructor == null)
