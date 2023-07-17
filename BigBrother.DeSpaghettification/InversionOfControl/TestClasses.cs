@@ -47,9 +47,9 @@
 
 	internal class NoDependencyWithArgsClass : TestClassWithArgs, INoDependencyWithArgsClass
 	{
-		public NoDependencyWithArgsClass(string arg) : base(new object[] { }, arg) { }
-		public NoDependencyWithArgsClass(int arg) : base(new object[] { }, arg) { }
-		public NoDependencyWithArgsClass(float arg) : base(new object[] { }, arg) { }
+		public NoDependencyWithArgsClass(string arg) : base(Array.Empty<object>(), arg) { }
+		public NoDependencyWithArgsClass(int arg) : base(Array.Empty<object>(), arg) { }
+		public NoDependencyWithArgsClass(float arg) : base(Array.Empty<object>(), arg) { }
 	}
 
 	internal class OneDependencyWithArgsClass : TestClassWithArgs, IOneDependencyWithArgsClass
