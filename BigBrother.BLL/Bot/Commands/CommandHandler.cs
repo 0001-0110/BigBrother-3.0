@@ -6,13 +6,15 @@ namespace BigBrother.BLL.Bot.Commands
 {
     internal abstract class CommandHandler : ICommandHandler
     {
-		private readonly string name;
+        public readonly string commandName;
+
+		public string CommandName { get { return commandName; } }
 
         private readonly IEnumerable<ISubCommandHandler> subCommandHandlers;
 
         public CommandHandler(string name, params ISubCommandHandler[] subCommandHandlers) 
         {
-            this.name = name;
+            commandName = name;
             this.subCommandHandlers = subCommandHandlers;
         }
 

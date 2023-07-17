@@ -1,6 +1,7 @@
 ﻿using BigBrother.BLL.Bot.Services;
 using Discord;
 using Discord.WebSocket;
+using InversionOfControl;
 
 namespace BigBrother.BLL.Bot
 {
@@ -11,12 +12,12 @@ namespace BigBrother.BLL.Bot
 
 		private bool isRunning = false;
 
-		public BigBrother()
+		public BigBrother(IDependencyInjector injector)
 		{
 			// TODO We may not need all intents
 			client = new DiscordSocketClient(
 				new DiscordSocketConfig() { GatewayIntents = GatewayIntents.All });
-			commandHandlerCollection = new CommandHandlerCollection();
+			commandHandlerCollection = injector.Instantiate<CommandHandlerCollection>()!;
 
 			client.SlashCommandExecuted += Client_SlashCommandExecuted;
 		}
