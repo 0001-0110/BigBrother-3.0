@@ -2,7 +2,7 @@
 
 namespace BigBrother.BLL.Bot.Commands.SubCommands
 {
-	internal class SubCommandHandler : ISubCommandHandler
+	internal class SubCommandHandler : RestrictedAccessHandler, ISubCommandHandler
 	{
 		// TODO
 		public SubCommandHandler(params string[] args)
@@ -10,7 +10,7 @@ namespace BigBrother.BLL.Bot.Commands.SubCommands
 			throw new NotImplementedException();
 		}
 
-		public SlashCommandOptionBuilder GetCommandBuilder()
+		public SlashCommandOptionBuilder GetSubCommandBuilder()
 		{
 			throw new NotImplementedException();
 		}

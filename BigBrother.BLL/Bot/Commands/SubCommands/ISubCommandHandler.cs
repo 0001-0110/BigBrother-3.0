@@ -4,6 +4,6 @@ namespace BigBrother.BLL.Bot.Commands.SubCommands
 {
 	internal interface ISubCommandHandler
 	{
-		public SlashCommandOptionBuilder GetCommandBuilder();
+		public SlashCommandOptionBuilder GetSubCommandBuilder();
 	}
 }

@@ -9,7 +9,7 @@ namespace BigBrother.BLL
 			// Add all mappings here
 			IDependencyInjector injector = new DependencyInjector();
 
-			// Create a new Instance of the bot
+			// Create a new Instance of the bot and check that it is not null
 			if (injector.Instantiate<Bot.BigBrother>() is Bot.BigBrother bigBrother)
 			{
 				// Start the bot

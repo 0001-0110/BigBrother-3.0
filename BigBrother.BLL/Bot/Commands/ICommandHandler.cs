@@ -7,8 +7,6 @@ namespace BigBrother.BLL.Bot.Commands
 	{
 		public string CommandName { get; }
 
-		public Task Init();
-
 		public SlashCommandBuilder GetModuleCommandBuilder();
 
 		public Task HandleCommand(SocketSlashCommand command);

@@ -24,7 +24,7 @@
     <Folder Include="Bot\Commands\HangmanCommand\" />
     <Folder Include="Bot\Commands\RoleCommand\" />
     <Folder Include="Bot\Commands\ReminderCommand\" />
-    <Folder Include="Bot\Commands\QuoteCommand\" />
+    <Folder Include="Bot\Commands\WriterCommand\" />
     <Folder Include="Extensions\" />
     <Folder Include="Utilities\" />
     <Folder Include="Services\" />

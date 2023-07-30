@@ -1,11 +1,11 @@
-﻿using BigBrother.BLL.Bot.Services;
+﻿using BigBrother.BLL.Bot.Commands;
 using Discord;
 using Discord.WebSocket;
 using InversionOfControl;
 
 namespace BigBrother.BLL.Bot
 {
-	internal class BigBrother
+    internal class BigBrother
 	{
 		private readonly DiscordSocketClient client;
 		private readonly CommandHandlerCollection commandHandlerCollection;
@@ -19,7 +19,19 @@ namespace BigBrother.BLL.Bot
 				new DiscordSocketConfig() { GatewayIntents = GatewayIntents.All });
 			commandHandlerCollection = injector.Instantiate<CommandHandlerCollection>()!;
 
+			client.Ready += Client_Ready;
 			client.SlashCommandExecuted += Client_SlashCommandExecuted;
+		}
+
+		private async Task Client_Ready()
+		{
+			await client.SetStatusAsync(UserStatus.Online);
+			await client.SetGameAsync("you", type: ActivityType.Watching);
+
+			// Technically, it is not necessary to do it again every time the program is run,
+			// But it does not craete any problems either, so for now I'll do it like that
+			
+			commandHandlerCollection.BuildSlashCommands(client);
 		}
 
 		private async Task Client_SlashCommandExecuted(SocketSlashCommand command)
@@ -29,8 +41,8 @@ namespace BigBrother.BLL.Bot
 
 		private async Task Connect()
 		{
-			// TODO Read token
-			await client.LoginAsync(TokenType.Bot, "");
+			// TODO Read token from config file
+			await client.LoginAsync(TokenType.Bot, "MTAwNjU5Njg3ODY2Nzg5NDkyNQ.G1pBzi.9JdHcyv6XWo5oxNpsaOX2vKh33nQfpQXkqrQXs");
 			await client.StartAsync();
 		}
 
@@ -43,6 +55,8 @@ namespace BigBrother.BLL.Bot
 
 		public async Task<int> Run()
 		{
+			isRunning = true;
+
 			try
 			{
 				await Connect();
